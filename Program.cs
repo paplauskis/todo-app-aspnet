@@ -22,6 +22,8 @@ builder.Services.AddScoped<ISimpleTodoRepository, SimpleTodoRepository>();
 builder.Services.AddDbContext<AppDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("ApiDatabase")));
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
