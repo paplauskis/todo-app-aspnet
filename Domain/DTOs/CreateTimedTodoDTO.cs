@@ -1,5 +1,6 @@
 namespace todo_app.Domain.DTOs;
 
+// dto used when need to read request to create todo
 public class TimedTodoDTO
 {
     public string? Name { get; set; }
