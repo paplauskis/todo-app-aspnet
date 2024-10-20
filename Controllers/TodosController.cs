@@ -23,8 +23,8 @@ public class TodosController : ControllerBase
     {
         var simpleTodos = await _simpleTodoService.GetAllAsync();
         var timedTodos = await _timedTodoService.GetAllAsync();
-        var todos1 = TodoConverter.Convert(simpleTodos);
-        var todos2 = TodoConverter.Convert(timedTodos);
+        var todos1 = TodoMapper.Convert(simpleTodos);
+        var todos2 = TodoMapper.Convert(timedTodos);
 
         return Ok(todos1.Concat(todos2));
     }
