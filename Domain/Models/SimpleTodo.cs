@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using todo_app.Domain.Enumerations;
@@ -12,6 +13,7 @@ public class SimpleTodo : Todo
     
     [JsonPropertyName("image")]
     [Column("image")]
+    [MaxLength(250)]
     public string? Image { get; set; }
     
     public SimpleTodo(string name, PriorityLevel priority, string? description = null, string? image = null)

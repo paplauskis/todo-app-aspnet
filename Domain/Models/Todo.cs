@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -13,6 +14,7 @@ public abstract class Todo
     
     [JsonPropertyName("name")]
     [Column("name")]
+    [MaxLength(100)]
     public string Name
     {
         get => _name;
@@ -23,6 +25,7 @@ public abstract class Todo
     
     [JsonPropertyName("description")]
     [Column("description")]
+    [MaxLength(500)]
     public string? Description { get; set; }
     
     [JsonPropertyName("created_at")]
