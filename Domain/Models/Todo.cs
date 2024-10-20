@@ -7,7 +7,7 @@ public abstract class Todo
 {
     [JsonPropertyName("id")]
     [Column("id")]
-    public Guid Id { get; init; }
+    public Guid Id { get; protected init; }
 
     private string? _name;
     
@@ -27,15 +27,9 @@ public abstract class Todo
     
     [JsonPropertyName("created_at")]
     [Column("created_at")]
-    public DateTime CreatedAt { get; init; }
+    public DateTime CreatedAt { get; protected init; }
 
     [JsonPropertyName("is_completed")]
     [Column("is_completed")]
-    public bool IsCompleted { get; private set; }
-
-    public void MarkComplete()
-    {
-        IsCompleted = true;
-    }
-    
+    public bool IsCompleted { get; set; }
 }
