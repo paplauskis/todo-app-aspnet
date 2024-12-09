@@ -1,3 +1,4 @@
+using todo_app.Domain.DTOs;
 using todo_app.Domain.Interfaces.Repository;
 using todo_app.Domain.Interfaces.Service;
 using todo_app.Domain.Models;
@@ -28,13 +29,13 @@ public class SimpleTodoService : ISimpleTodoService
         return await _repository.Create(todo);
     }
 
-    public async Task<SimpleTodo> UpdateAsync(SimpleTodo todo)
+    public async Task<SimpleTodo> UpdateAsync(UpdateSimpleTodoDTO todo, string id)
     {
-        var todoToBeUpdated = await GetByIdAsync(todo.Id.ToString());
+        var todoToBeUpdated = await GetByIdAsync(id);
 
         if (todoToBeUpdated == null)
         {
-            throw new Exception("todo not found.");
+            throw new ArgumentNullException("todo not found.");
         }
 
         todoToBeUpdated.Name = todo.Name;
@@ -53,7 +54,7 @@ public class SimpleTodoService : ISimpleTodoService
 
         if (todoToBeDeleted == null)
         {
-            throw new Exception("todo not found");
+            throw new ArgumentNullException("todo not found");
         }
 
         return await _repository.Delete(todoToBeDeleted);

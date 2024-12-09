@@ -1,3 +1,4 @@
+using todo_app.Domain.DTOs;
 using todo_app.Domain.Interfaces.Repository;
 using todo_app.Domain.Interfaces.Service;
 using todo_app.Domain.Models;
@@ -28,9 +29,9 @@ public class TimedTodoService : ITimedTodoService
         return await _repository.Create(todo);
     }
 
-    public async Task<TimedTodo> UpdateAsync(TimedTodo todo)
+    public async Task<TimedTodo> UpdateAsync(UpdateTimedTodoDTO todo, string id)
     {
-        var todoToBeUpdated = await GetByIdAsync(todo.Id.ToString());
+        var todoToBeUpdated = await GetByIdAsync(id);
 
         if (todoToBeUpdated == null)
         {
