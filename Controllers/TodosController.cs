@@ -31,7 +31,7 @@ public class TodosController : ControllerBase
         return Ok(todos1.Concat(todos2));
     }
     
-    [HttpPost("simple-todo")]
+    [HttpPost("/simple-todo")]
     public async Task<IActionResult> Create([FromBody] CreateSimpleTodoDTO? simpleTodoDto)
     {
         if (simpleTodoDto == null)
@@ -49,7 +49,7 @@ public class TodosController : ControllerBase
         return Ok(newTodo);
     }
     
-    [HttpPost("timed-todo")]
+    [HttpPost("/timed-todo")]
     public async Task<IActionResult> Create([FromBody] CreateTimedTodoDTO? timedTodoDto)
     {
         if (timedTodoDto == null)
@@ -65,4 +65,22 @@ public class TodosController : ControllerBase
 
         return Ok(newTodo);
     }
+
+    [HttpPut("/simple-todo/{id}")]
+    public async Task<IActionResult> Update([FromBody] UpdateSimpleTodoDTO simpleTodo, string id)
+    {
+        await _simpleTodoService.UpdateAsync(simpleTodo, id);
+
+        return Ok();
+    }
+    
+    [HttpPut("/timed-todo/{id}")]
+    public async Task<IActionResult> Update([FromBody] UpdateTimedTodoDTO timedTodo, string id)
+    {
+        await _timedTodoService.UpdateAsync(timedTodo, id);
+
+        return Ok();
+    }
+    
+    //TODO - commit previous changes
 }
