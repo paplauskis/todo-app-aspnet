@@ -13,12 +13,7 @@ public class TimedTodo : Todo
     public DateTime DueDate
     {
         get => _dueDate;
-        set
-        {
-            if (value < CreatedAt)
-                throw new ArgumentException("Due date cannot be earlier than todo creation date.");
-            _dueDate = value;
-        }
+        set => _dueDate = value;
     }
 
     public TimedTodo(string name, DateTime dueDate, string? description = null)
